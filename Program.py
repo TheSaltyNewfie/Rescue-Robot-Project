@@ -20,7 +20,12 @@ def roomOne():
         r.rotate_clockwise(90)
         print(r.rescue_person())
         r.rotate_clockwise(86) # Degrees are not float so best angle here is 86
-        r.forward(724)
+        r.forward(600)
+        r.rotate_counterclockwise(94)
+        
+
+def roomTwo():
+    pass
 
 
 r = robot.RobotController()
