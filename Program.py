@@ -1,5 +1,5 @@
 import robot
-import PySimpleGUI
+
 import threading
 
 r = robot.RobotController()
@@ -17,13 +17,15 @@ def markerValue(arg1):
 def roomOne():
     r.forward(366.7) #Pixel perfect for the scanner, position is also float
     r.rotate_counterclockwise(85) # near perfect angle to read the scanner and move into the room
+    print(f'This room is:{r.read_marker()}')
     if r.read_marker() == 1:
         r.forward(700.1) #Pixel perfect for the person in the room
         r.rotate_clockwise(90)
-        print(r.rescue_person())
+        #print(r.rescue_person())
         r.rotate_clockwise(86) # Degrees are not float so best angle here is 86
         r.forward(600)
         r.rotate_counterclockwise(94)
+        #r.forward(300)
     #if r.read_marker() == 2:
         #r.forward(700.1)
         #while r.extinguish_fire()
@@ -32,9 +34,13 @@ def roomOne():
 
 def roomTwo():
     r.forward(500)
+    print(f'This room is:{r.read_marker()}')
 
 def roomThree():
-    pass
+    r.forward(500)
+    r.rotate_counterclockwise(90)
+    r.forward(1550)
+    print(f'This room is:{r.read_marker()}')
 
 
 
@@ -42,3 +48,5 @@ def roomThree():
 roomOne()
 
 roomTwo()
+
+roomThree()
