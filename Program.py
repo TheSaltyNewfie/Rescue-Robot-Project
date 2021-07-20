@@ -2,6 +2,8 @@ import robot
 import PySimpleGUI
 import threading
 
+r = robot.RobotController()
+r.connect()
 
 def markerValue(arg1):
     if arg1 == 1:
@@ -22,15 +24,21 @@ def roomOne():
         r.rotate_clockwise(86) # Degrees are not float so best angle here is 86
         r.forward(600)
         r.rotate_counterclockwise(94)
+    #if r.read_marker() == 2:
+        #r.forward(700.1)
+        #while r.extinguish_fire()
+    return 1
         
 
 def roomTwo():
+    r.forward(500)
+
+def roomThree():
     pass
 
 
-r = robot.RobotController()
-r.connect()
+
 
 roomOne()
 
-
+roomTwo()
