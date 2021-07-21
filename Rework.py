@@ -25,7 +25,6 @@ def roomOne(): #Room 1, checks for fire and people
         else:
             pass #Remove when you test temp code this is here to not throw errors right now
             #! Please put checking temp here
-            r.right(670)
 
         r.right(670)
     if markerValue() == False:
@@ -50,12 +49,10 @@ def roomTwo(): #Room 2, checks for fire and people
             #! Copy from room one
             r.forward(-85)#! Leave this here
             r.right(650)#! Leave this here
-        r.forward(-85)
-        r.right(650)
     if markerValue() == False:
         pass
 
-def roomThree(): #Room 2, checks for fire and people
+def roomThree(): #Room 3, checks for fire and people
     if markerValue() == True:
         r.rotate_counterclockwise(90)
         r.forward(100)
@@ -65,7 +62,7 @@ def roomThree(): #Room 2, checks for fire and people
     if markerValue() == False:
         pass
 
-def roomFour(): #Room 2, checks for fire and people
+def roomFour(): #Room 4, checks for fire and people
     if markerValue() == True:
         pass
         #r.rotate_counterclockwise(90)
