@@ -1,4 +1,6 @@
 import robot
+import math
+import numpy as np
 r = robot.RobotController()
 r.connect()
 
@@ -22,11 +24,10 @@ def roomOne(): #Room 1, checks for fire and people
             while r.scan_for_fire() == True:
                 r.extinguish_fire()
             r.right(670)
-        else:
-            pass #Remove when you test temp code this is here to not throw errors right now
-            #! Please put checking temp here
-
-        r.right(670)
+        else: # Use the else statement for temperature code I think we may change it from else to do it anyway
+            pass 
+            #TODO: Put temperature code here
+            r.right(670)#! Leave this here, it tells the bot how to leave
     if markerValue() == False:
         pass
 
@@ -45,10 +46,10 @@ def roomTwo(): #Room 2, checks for fire and people
             r.forward(-85)
             r.right(650)
         else:
-            pass #Remove when you test temp code this is here to not throw errors right now
-            #! Copy from room one
-            r.forward(-85)#! Leave this here
-            r.right(650)#! Leave this here
+            pass
+            #TODO: Put temperature code here
+            r.forward(-85)#! Leave this here, it tells the bot how to leave
+            r.right(650)#! Leave this here, it tells the bot how to leave
     if markerValue() == False:
         pass
 
@@ -56,20 +57,17 @@ def roomThree(): #Room 3, checks for fire and people
     if markerValue() == True:
         r.rotate_counterclockwise(90)
         r.forward(100)
-        #Put temperature code here
-        r.forward(-100)
-        r.rotate_clockwise(90)
+        #TODO: Put temperature code here
+        r.forward(-100)#! Leave this here, it tells the bot how to leave
+        r.rotate_clockwise(90)#! Leave this here, it tells the bot how to leave
     if markerValue() == False:
         pass
 
 def roomFour(): #Room 4, checks for fire and people
     if markerValue() == True:
         pass
-        #r.rotate_counterclockwise(90)
-        #r.forward(100)
-        #Put temperature code here
-        #r.forward(-100)
-        #r.rotate_clockwise(90)
+        r.forward(100)
+        #temperature code here
     if markerValue() == False:
         pass
 
