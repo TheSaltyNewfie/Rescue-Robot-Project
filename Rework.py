@@ -4,6 +4,7 @@ import numpy as np
 r = robot.RobotController()
 r.connect()
 
+tempList = []
 
 def markerValue(): #If the marker reads a 1 we should do something. If it reads a 2 we skip
     if r.read_marker() == 1:
@@ -14,6 +15,7 @@ def markerValue(): #If the marker reads a 1 we should do something. If it reads 
 def roomOne(): #Room 1, checks for fire and people
     if markerValue() == True:
         r.left(650)
+        tempList.append(r.take_temperature())
         if r.scan_for_people() == True:
             r.rescue_person()
             r.right(670)
@@ -24,14 +26,8 @@ def roomOne(): #Room 1, checks for fire and people
             while r.scan_for_fire() == True:
                 r.extinguish_fire()
             r.right(670)
-        else: # Use the else statement for temperature code I think we may change it from else to do it anyway
-            pass 
-
-
-            #TODO: Put temperature code here
-
-            
-            r.right(670)#! Leave this here, it tells the bot how to leave
+        else:
+            r.right(670)
     if markerValue() == False:
         pass
 
@@ -39,6 +35,7 @@ def roomTwo(): #Room 2, checks for fire and people
     if markerValue() == True:
         r.left(650)
         r.forward(85)
+        tempList.append(r.take_temperature())
         if r.scan_for_people() == True:
             r.rescue_person()
             r.forward(-85)
@@ -49,15 +46,10 @@ def roomTwo(): #Room 2, checks for fire and people
                 r.extinguish_fire()
             r.forward(-85)
             r.right(650)
+            
         else:
-            pass
-
-
-            #TODO: Put temperature code here
-
-
-            r.forward(-85)#! Leave this here, it tells the bot how to leave
-            r.right(650)#! Leave this here, it tells the bot how to leave
+            r.forward(-85)
+            r.right(650)
     if markerValue() == False:
         pass
 
@@ -65,11 +57,7 @@ def roomThree(): #Room 3, checks for fire and people
     if markerValue() == True:
         r.rotate_counterclockwise(90)
         r.forward(100)
-
-
-        #TODO: Put temperature code here
-
-
+        tempList.append(r.take_temperature())
         r.forward(-100)#! Leave this here, it tells the bot how to leave
         r.rotate_clockwise(90)#! Leave this here, it tells the bot how to leave
     if markerValue() == False:
@@ -77,28 +65,44 @@ def roomThree(): #Room 3, checks for fire and people
 
 def roomFour(): #Room 4, checks for fire and people
     if markerValue() == True:
-        r.forward(300)
-        r.left(200)
+        r.forward(400)
+        r.left(500)
         r.rotate_counterclockwise(90)
+        tempList.append(r.take_temperature())
         if r.scan_for_people() == True:
             r.rescue_person()
-            r.forward(-200)
-            r.left(-300)
-            print("Finished RoomOne")
+            r.forward(-500)
+            r.right(-385)
         elif r.scan_for_fire() == True:
             while r.scan_for_fire() == True:
                 r.extinguish_fire()
-            r.forward(-200)
-            r.left(-300)
-        else: # Use the else statement for temperature code I think we may change it from else to do it anyway
-            pass 
+            r.forward(-500)
+            r.right(-385)
+        else:
+            r.forward(-500)
+            r.right(-385)
+    if markerValue() == False:
+        r.rotate_counterclockwise(90)
+        
 
-
-            #TODO: Put temperature code here
-
-
-            r.forward(-200)#! Leave this here, it tells the bot how to leave
-            r.left(-300)#! Leave this here, it tells the bot how to leave
+def roomFive():
+    if markerValue() == True:
+        r.right(300)
+        r.forward(250)
+        tempList.append(r.take_temperature())
+        if r.scan_for_people() == True:
+            r.rescue_person()
+            r.forward(-500)
+            r.right(-500)
+        elif r.scan_for_fire() == True:
+            while r.scan_for_fire() == True:
+                r.extinguish_fire()
+            r.forward(-500)
+            r.right(-500)
+        else:
+            r.forward(-500)
+            r.right(-500)
+        
     if markerValue() == False:
         pass
 
@@ -122,3 +126,14 @@ r.left(690)
 r.forward(850)
 print(f'This room ID is: {r.read_marker()}')
 roomFour()
+r.forward(1450)
+r.right(200)
+print(f'This room ID is: {r.read_marker()}')
+roomFive()
+r.forward(-1150)
+r.left(850)
+r.forward(-750)
+r.left(900)
+r.forward(2250)
+r.right(1490)
+print(f'The temperature for each room is as follows: {tempList}')
