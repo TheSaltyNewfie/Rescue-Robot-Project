@@ -1,6 +1,7 @@
 import robot
 import math
 import numpy as np
+import matplotlib.pyplot as plt
 r = robot.RobotController()
 r.connect()
 
@@ -106,6 +107,10 @@ def roomFive():
     if markerValue() == False:
         pass
 
+def tempMath(): 
+    print("Average temp was this")
+
+
 #These are the movement commands
 r.forward(370)
 r.left(100)
@@ -137,3 +142,4 @@ r.left(900)
 r.forward(2250)
 r.right(1490)
 print(f'The temperature for each room is as follows: {tempList}')
+tempMath()
